@@ -70,7 +70,6 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $validated = $request->validate([
-            'isbn' => 'required|size:13|unique:books',
             'judul' => 'required',
             'halaman' => 'required|integer',
             'kategori' => 'required',
@@ -78,7 +77,6 @@ class BookController extends Controller
         ]);
 
         $book->update([
-            'isbn' => $validated['isbn'],
             'judul' => $validated['judul'],
             'halaman' => $validated['halaman'],
             'kategori' => $validated['kategori'],
@@ -93,8 +91,8 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        $book->delete();
+       $book->delete();
 
-        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
+    return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
     }
 }

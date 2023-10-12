@@ -19,7 +19,7 @@ class BookSeeder extends Seeder
                 $isbn = $faker->unique()->isbn13;
                 $judul = $faker->sentence;
                 $halaman = $faker->numberBetween(100, 500);
-                $kategori = 'uncategorized';
+                $kategori = 'uncategoriz';
                 $penerbit= $faker->company;
                 $created_at = now();
                 $updated_at = now();
