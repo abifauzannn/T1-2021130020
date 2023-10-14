@@ -18,3 +18,11 @@ use App\Http\Controllers\BookController;
 Route::get('/', LandingController::class)->name('landing');
 
 Route::resource('books', BookController::class);
+
+Route::get('/books/{isbn}', 'BookController@edit')->where('isbn', '0*[0-9]+');
+
+
+
+
+
+

@@ -12,91 +12,60 @@
             </div>
         </div>
     </header>
+
     <div class="row">
         <!-- Blog entries-->
         <div class="col-lg-8">
             <!-- Featured blog post-->
-            <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg"
-                        alt="..."></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title">Featured Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque,
-                        nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate
-                        voluptatibus possimus, veniam magni quis!</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
+
+            @if ($featured)
+                <div class="card mb-4">
+                    <a href="#!"><img class="card-img-top" src="https://picsum.photos/seed/picsum/850/350"
+                            alt="..."></a>
+                    <div class="card-body">
+                        <div class="small text-muted">{{ $featured->created_at }}</div>
+                        <p>{{ $featured->isbn }}</p>
+                        <h2 class="card-title h4 text-bold">{{ $featured->judul }}</h2>
+                        <p class="">{{ $featured->kategori }} <br>
+                            Diterbitkan oleh {{ $featured->penerbit }} <br>
+                            Berjumlah {{ $featured->halaman }} halaman
+                        </p>
+                        <a class="btn btn-primary" href="{{ route('books.show', $featured) }}">Read more →</a>
+                    </div>
                 </div>
-            </div>
+            @endif
+
             <!-- Nested row for non-featured blog posts-->
             <div class="row">
-                <div class="col-lg-6">
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2023</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
+                @forelse ($books as $book)
+                    <div class="col-lg-6">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="https://picsum.photos/seed/picsum/700/350"
+                                    alt="..."></a>
+                            <div class="card-body">
+                                <div class="small text-muted">{{ $book->created_at }}</div>
+                                <p>{{ $book->isbn }}</p>
+                                <h2 class="card-title h4 text-bold">{{ $book->judul }}</h2>
+                                <p class="">{{ $book->kategori }} <br>
+                                    Diterbitkan oleh {{ $book->penerbit }} <br>
+                                    Berjumlah {{ $book->halaman }} halaman
+                                </p>
+                                <a class="btn btn-primary" href="{{ route('books.show', $book) }}">Read more →</a>
+                            </div>
                         </div>
                     </div>
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2023</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
+                @empty
+                    <div class="col-md-12">
+                        <div
+                            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <h2 class="card-text mb-auto">No articles found.</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2023</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2023</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
-            <!-- Pagination-->
-            <nav aria-label="Pagination">
-                <hr class="my-0">
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"
-                            aria-disabled="true">Newer</a></li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                </ul>
-            </nav>
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
@@ -118,16 +87,18 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <ul class="list-unstyled mb-0">
-                                <li><a href="#!">Web Design</a></li>
-                                <li><a href="#!">HTML</a></li>
-                                <li><a href="#!">Freebies</a></li>
+                                <li><a href="#!">Sci-fi</a></li>
+                                <li><a href="#!">Novel</a></li>
+                                <li><a href="#!">History</a></li>
+                                <li><a href="#!">Biography</a></li>
                             </ul>
                         </div>
                         <div class="col-sm-6">
                             <ul class="list-unstyled mb-0">
-                                <li><a href="#!">JavaScript</a></li>
-                                <li><a href="#!">CSS</a></li>
-                                <li><a href="#!">Tutorials</a></li>
+                                <li><a href="#!">Romance</a></li>
+                                <li><a href="#!">Education</a></li>
+                                <li><a href="#!">Culinary</a></li>
+                                <li><a href="#!">Comic</a></li>
                             </ul>
                         </div>
                     </div>
@@ -136,9 +107,13 @@
             <!-- Side widget-->
             <div class="card mb-4">
                 <div class="card-header">Side Widget</div>
-                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use,
-                    and feature the Bootstrap 5 card component!</div>
+                <div class="card-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam aliquid cumque
+                    labore nam! Vel consequatur quod autem voluptatem aliquam doloribus, qui deserunt iste obcaecati facilis
+                    optio laudantium! Amet, iste quasi.</div>
             </div>
         </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        {!! $books->links() !!}
     </div>
 @endsection

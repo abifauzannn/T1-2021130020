@@ -1,5 +1,7 @@
 @extends('layouts.template')
 
+@section('title', 'Tambah Buku')
+
 @section('content')
     <header class="py-5 bg-light border-bottom mb-4">
         <div class="container">
@@ -25,15 +27,15 @@
         @csrf
         <div class="form-group">
             <label for="isbn">ISBN</label>
-            <input type="text" class="form-control" name="isbn" id="isbn" maxlength="13" required>
+            <input type="text" class="form-control" name="isbn" id="isbn" maxlength="14" value=" {{ old('isbn') }}" required>
         </div>
         <div class="form-group mt-3">
             <label for="judul">Judul</label>
-            <input type="text" class="form-control" name="judul" id="judul" required>
+            <input type="text" class="form-control" name="judul" id="judul" value="{{ old('judul') }}" required>
         </div>
         <div class="form-group mt-3">
             <label for="halaman">Halaman</label>
-            <input type="number" class="form-control" name="halaman" id="halaman" value="0" required>
+            <input type="number" class="form-control" name="halaman" id="halaman" value="{{ old('halaman') }}" required>
         </div>
         <div class="form-group mt-3">
             <label for="kategori">Kategori</label>
@@ -51,7 +53,7 @@
         </div>
         <div class="form-group mt-3">
             <label for="penerbit">Penerbit</label>
-            <input type="text" class="form-control" name="penerbit" id="penerbit" required>
+            <input type="text" class="form-control" name="penerbit" id="penerbit" value="{{old('penerbit')}}" required>
         </div>
         <button type="submit" class="btn btn-primary mt-2">Simpan</button>
     </form>

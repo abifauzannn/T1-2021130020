@@ -13,7 +13,8 @@ class LandingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $books = Book::query()->latest()->paginate(7);
-        return view('landing', compact('books'));
+        $books = Book::query()->latest()->paginate(9);
+        $featured = $books->shift();
+        return view('landing', compact('books', 'featured'));
     }
 }

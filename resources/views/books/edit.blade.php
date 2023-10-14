@@ -1,5 +1,7 @@
 @extends('layouts.template')
 
+@section('title', 'Edit Buku')
+
 @section('content')
     <header class="py-5 bg-light border-bottom mb-4">
         <div class="container">
